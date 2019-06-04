@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">To-do</string>
-    <string name="add_item">Add item</string>
+    <string name="add_item">Add</string>
+    <string name="edit">Edit</string>
+    <string name="name">Name</string>
+    <string name="what_do_we_have_to_do">What do we have to do?</string>
+    <string name="prioritybtn">prioritybtn</string>
+    <string name="some_random_thing">Some random thing</string>
+    <string name="today">Today</string>
+    <array name="priorities">
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </array>
+    <array name="entries">
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+        <item>No</item>
+    </array>
 </resources>
