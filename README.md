@@ -20,7 +20,9 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [x] none.
+* [x] Improved UI/UX.
+* [x] Improve style of the todo items in the list using a custom adapter.'
+* [x] Add support for selecting the priority of each todo item.
 
 ## Video Walkthrough
 
