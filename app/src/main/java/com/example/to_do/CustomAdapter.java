@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ public class CustomAdapter extends ArrayAdapter<Item> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(R.layout.custom_listview, parent, false);
         TextView etCustomTask = convertView.findViewById(R.id.etCustomTask);
@@ -50,6 +51,21 @@ public class CustomAdapter extends ArrayAdapter<Item> {
                 priorityIndicator.setBackgroundResource(android.R.color.darker_gray);
                 break;
         }
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                DatabaseController controller = new DatabaseController(getContext());
+                int id = arrayList.get(position).getId();
+                String task = arrayList.get(position).getTask();
+                String date = arrayList.get(position).getDate();
+                String priority = arrayList.get(position).getPriority();
+                if (isChecked) {
+                    controller.UpdateItems(id, task, date, 1, priority);
+                } else {
+                    controller.UpdateItems(id, task, date, 0, priority);
+                }
+            }
+        });
         return convertView;
     }
 }

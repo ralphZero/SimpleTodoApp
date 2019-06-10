@@ -9,10 +9,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -44,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.custom_actionbar);
+        setContentView(R.layout.content_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         priorityIndicator = findViewById(R.id.priority);
         etAddItem = findViewById(R.id.etAddItem);
@@ -74,7 +76,9 @@ public class MainActivity extends AppCompatActivity {
                     String today = dateOnly.format(cal.getTime());
 
                     adapter.add(new Item(etAddItem.getText().toString(), today, false, chosenPriority));
+
                     writeItems(etAddItem.getText().toString(), today, false, chosenPriority);
+
                     adapter.notifyDataSetChanged();
                     etAddItem.setText("");
                     chosenPriority = "No";
@@ -159,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
             arrayList.remove(position);
             adapter.insert(new Item(id, item, date, arrayList.get(position).isCompleted(), priority), position);
             adapter.notifyDataSetChanged();
+            Snackbar.make(getCurrentFocus(), "Item edited.", Snackbar.LENGTH_SHORT).show();
         }
     }
 
